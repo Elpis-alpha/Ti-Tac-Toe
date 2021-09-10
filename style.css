@@ -8,6 +8,11 @@
   font-family: oldEng;
 }
 
+@font-face {
+  src: url(assets/HARNGTON.TTF);
+  font-family: Acquest;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -16,7 +21,7 @@
 }
 
 body{
-  font-family: oldEng;
+  font-family: Acquest;
 }
 
 div.site-topper{
@@ -41,6 +46,7 @@ div.site-topper nav{
 }
 
 div.site-topper nav div.site-name{
+  font-family: oldEng;
   padding: .5rem 1rem;
   z-index: 520;
 }
@@ -465,19 +471,29 @@ div.main-content{
 }
 
 form.begin-xtr-form input{
-  background-color: transparent;
   outline: 0; border: 0;
-  border: 1px solid teal;
+  border-bottom: 2px solid black;
+  background-color: transparent;
   padding: 0rem .5rem;
-  border-radius: .5rem;
   font-family: inherit;
+  margin-bottom: 10px;
   text-align: center;
+  font-size: .7rem;
+  width: 70%;
   transition: background-color 1s, color 1s;
 }
 
+form.begin-xtr-form input[type=submit]{
+  border: 1px solid black;
+  width: 50%;
+  border-radius: 5px;
+  
+}
+
 form.begin-xtr-form input[type=submit]:hover{
-  background-color: teal;
-  cursor: pointer; color: white;
+  box-shadow: 0 0 3px 1px black;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
 div.game-holder{

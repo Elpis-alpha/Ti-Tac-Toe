@@ -534,7 +534,26 @@ const BoardCtrl = (function () {
 
       numbPlay: UserCtrl.getData('numb players'),
 
-      firstMove: UserCtrl.getData('first move'),
+      firstMove: (() => {
+
+        let firstmove = UserCtrl.getData('first move')
+
+        if (UserCtrl.getData('first move') === 'XO') {
+
+          if (UserCtrl.getData('board').hasOwnProperty('firstMove')) {
+
+            firstmove = UserCtrl.getData('board').firstMove == 'X' ? 'O' : 'X'
+
+          } else {
+
+            firstmove = UserCtrl.getData('letter')
+
+          }
+
+        }
+
+        return firstmove
+      })(),
 
       playingPoints: [],
 
@@ -543,9 +562,30 @@ const BoardCtrl = (function () {
       boardPoints: ['', '', '', '', '', '', '', '', ''],
 
       turn: (() => {
-        const item = UserCtrl.getData('first move') === UserCtrl.getData('letter')
 
-        return item ? UserCtrl.getData('name') : UserCtrl.getData('xname')
+        let firstmove = UserCtrl.getData('first move')
+
+        if (UserCtrl.getData('first move') === 'XO') {
+
+          console.log(UserCtrl.getData('board').hasOwnProperty('firstMove'));
+
+          if (UserCtrl.getData('board').hasOwnProperty('firstMove')) {
+
+            firstmove = UserCtrl.getData('board').firstMove == 'X' ? 'O' : 'X'
+
+          } else {
+
+            firstmove = UserCtrl.getData('letter')
+
+          }
+
+        }
+
+        const item = firstmove === UserCtrl.getData('letter')
+
+        let ment = item ? UserCtrl.getData('name') : UserCtrl.getData('xname')
+
+        return ment
       })(),
 
       legitBoard: true,
@@ -3042,11 +3082,9 @@ const App = (function (UICtrl, BoardCtrl,
       UICtrl.sendMessage(`
       <form class="begin-xtr-form">
       <p style="padding-bottom:.4rem">Welcome to the ultimate Tic Tac Toe <br></p>
-      Your Name<br>
-      <input type="text" required id="begin-xtr-name"> <br>
-      Opponent Name<br>
-      <input type="text" required id="begin-xtr-xame"><br>
-      <input type="submit" style="margin-top:.4rem; padding: .2rem .4rem;"> <br>
+      <input type="text" required id="begin-xtr-name" placeholder="Your Name"> <br>
+      <input type="text" required id="begin-xtr-xame" placeholder="Opponent Name"><br>
+      <input type="submit" style="margin-top:.4rem; padding: .2rem .4rem;" ><br>
       <small style="padding-bottom:.4rem">Note: we use your browsers local storage to store your data. <br>Click submit to grant permission</small>
       </form>
       `)
@@ -3068,7 +3106,7 @@ const App = (function (UICtrl, BoardCtrl,
               letter: 'X',
               difficulty: 'easy',
               numbPlay: 'one',
-              firstMove: 'X',
+              firstMove: 'XO',
               statEasy: [0, 0, 0],
               statMedium: [0, 0, 0],
               statHard: [0, 0, 0],
