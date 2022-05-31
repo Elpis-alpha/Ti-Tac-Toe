@@ -512,6 +512,13 @@ div.game-holder div.board-stats-holder div.board-stats{
   text-align: center;
 }
 
+div.game-holder div.board-stats-holder div.board-place{
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 div.game-holder div.board-stats-holder div.board-stats div{
   padding: 1rem;
   padding-top: .5rem;
